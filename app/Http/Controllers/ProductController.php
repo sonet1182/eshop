@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Cart;
+use App\Models\Sell;
 //use Illuminate\Contracts\Session\Session;
 use Session;
 use Illuminate\Support\Facades\DB;
@@ -75,5 +76,22 @@ class ProductController extends Controller
         ->get();
 
         return view('order',['total'=>$total,'products'=>$products]);
+    }
+
+    function sells(Request $req){
+        $userId=Session::get('user')['id'];
+        $allcart = Cart::where('user_id',$userId)->get();
+        foreach($allcart as $cart){
+            $sell = new Sell;
+            $sell->product_id = $cart['product_id'];
+            $sell->user_id = $cart['user_id'];
+            $sell->status ="Pending";
+            $sell->payment_method =$req->payment;
+            $sell->payment_status ="Pending";
+            $sell->address =$req->address;
+            $sell->save();
+            Cart::where('user_id',$userId)->delete();
+        }
+        return redirect('/');
     }
 }

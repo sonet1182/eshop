@@ -33,8 +33,12 @@
       </table>
 </div>
 
-<div class="w-50 mx-auto pt-5">
-    <h3 class="text-center pb-2">Cash Memo</h3>
+
+
+<div class="row mx-auto pt-5">
+
+    <div class="col-sm-6">
+        <h3 class="text-center pb-2">Cash Memo</h3>
     <table class="table table-striped">
         <tbody>
 
@@ -61,6 +65,26 @@
 
         </tbody>
       </table>
+    </div>
+
+    <div class="col-sm-6">
+        <h3 class="text-center pb-2">Payment</h3>
+        <form action="/sells" method="POST">
+            @csrf
+            <div class="form-group">
+              <h5>Input your Address:</h5> <br>
+              <textarea class="w-100" name="address" id="address" required></textarea>
+            </div>
+            <div class="form-group">
+              <h5>Input Payment Method:</h5> <br>
+              <input type="radio" value="cash" name="payment"><b>   Online Payment</b> <br>
+              <input type="radio" value="cash" name="payment"><b>   EMI Payment</b> <br>
+              <input type="radio" value="cash" name="payment"><b>   Cash On Delivery</b>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+    </div>
 </div>
 
 @endsection
