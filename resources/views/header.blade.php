@@ -20,7 +20,7 @@
                 <a class="nav-link" href="{{ url('/') }}">Home <span class="sr-only">(current)</span></a>
               </li>
               <li class="nav-item">
-                <a class="nav-link text-white" href="#">Order</a>
+                <a class="nav-link text-white" href="/myorder">Order</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link text-white" href="#">About</a>
@@ -49,11 +49,15 @@
             <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <b>{{ Session::get('user')['name'] }}</b>
             </a>
-            <div class="dropdown-menu" style="max-width: 5px!important">
-              <a class="dropdown-item" href="/logout">Log Out</a>
+            <div class="dropdown-menu dropdown-menu-right" style="max-width: 5px!important">
+              <a class="dropdown-item text-success" href="#">Profile</a>
+              <a class="dropdown-item text-danger" href="/logout">Log Out</a>
             </div>
           </li>
           @else
+          <li class="nav-item">
+          <a class="nav-link text-white" href="/register">Register</a>
+          </li>
           <li class="nav-item">
           <a class="nav-link text-white" href="/login">Login</a>
           </li>
